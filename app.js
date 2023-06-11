@@ -31,22 +31,30 @@ function playRound(playerSelection, computerSelection) {
     return "Plz! Provide the correct information";
   }
 }
-const playerSelection = prompt(
-  "Pick a choice: Rock, Paper, Scissors!"
-).toUpperCase();
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
-
-console.log(playRound(playerSelection, computerSelection));
-// function game() {
-//   const playerSelection = prompt(
-//     "Pick a choice: Rock, Paper, Scissors!"
-//   ).toUpperCase();
-//   const computerSelection = getComputerChoice();
-//   console.log(playRound(playerSelection, computerSelection));
-//   console.log(playRound(playerSelection, computerSelection));
-//   console.log(playRound(playerSelection, computerSelection));
-//   console.log(playRound(playerSelection, computerSelection));
-//   console.log(playRound(playerSelection, computerSelection));
-// }
-// game();
+function game() {
+  const playerSelection = prompt(
+    "Pick a choice: Rock, Paper, Scissors!"
+  ).toUpperCase();
+  const computerSelection = getComputerChoice();
+  return playRound(playerSelection, computerSelection);
+}
+// It will repeat 5 times, who ever has the highest scores wins the game?
+function winner() {
+  for (let i = 0; i < 5; i++) {
+    console.log(game());
+  }
+  if (player_score === computer_score) {
+    console.log(
+      `It's a tie! Player's score ${player_score}, Computer's score ${computer_score}`
+    );
+  } else if (computer_score > player_score) {
+    console.log(
+      `You lose the game! Player's score ${player_score}, Computer's score ${computer_score}`
+    );
+  } else if (player_score > computer_score) {
+    console.log(
+      `You win the game! Player's score ${player_score}, Computer's score ${computer_score}`
+    );
+  }
+}
+winner();
