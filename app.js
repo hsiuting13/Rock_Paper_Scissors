@@ -38,9 +38,10 @@ function game() {
   const computerSelection = getComputerChoice();
   return playRound(playerSelection, computerSelection);
 }
-// It will repeat 5 times, who ever has the highest scores wins the game?
+// It will repeat five times, and whoever has the highest scores will win the game?
 function winner() {
   for (let i = 0; i < 5; i++) {
+    // It will update the scores and print the results for each round.
     console.log(game());
   }
   if (player_score === computer_score) {
