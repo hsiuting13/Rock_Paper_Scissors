@@ -1,11 +1,12 @@
-const choices = ["Rock", "Paper", "Scissors"];
 // Computer choices
 function getComputerChoice() {
+  const choices = ["Rock", "Paper", "Scissors"];
   let random_number = Math.floor(Math.random() * choices.length);
   return choices[random_number].toUpperCase();
 }
 let player_score = 0;
 let computer_score = 0;
+
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
     return "Tie";
@@ -31,31 +32,25 @@ function playRound(playerSelection, computerSelection) {
     return "Plz! Provide the correct information";
   }
 }
-function game() {
-  const playerSelection = prompt(
-    "Pick a choice: Rock, Paper, Scissors!"
-  ).toUpperCase();
-  const computerSelection = getComputerChoice();
-  return playRound(playerSelection, computerSelection);
-}
-// It will repeat five times, and whoever has the highest scores will win the game?
-function winner() {
-  for (let i = 0; i < 5; i++) {
-    // It will update the scores and print the results for each round.
-    console.log(game());
-  }
-  if (player_score === computer_score) {
-    console.log(
-      `It's a tie! Player's score ${player_score}, Computer's score ${computer_score}`
-    );
-  } else if (computer_score > player_score) {
-    console.log(
-      `You lose the game! Player's score ${player_score}, Computer's score ${computer_score}`
-    );
-  } else if (player_score > computer_score) {
+function game(){
+  if(player_score === 5) {
     console.log(
       `You win the game! Player's score ${player_score}, Computer's score ${computer_score}`
     );
-  }
+  } else if(computer_score === 5){
+    console.log(
+      `You lose the game! Player's score ${player_score}, Computer's score ${computer_score}`
+    );
+  } 
 }
-winner();
+
+
+const btns = document.querySelectorAll('button')
+btns.forEach((btn) => btn.addEventListener('click', () => {
+  const playerSelection = btn.textContent.toUpperCase();
+  const computerSelection = getComputerChoice();
+  console.log(playerSelection)
+  console.log(computerSelection)
+  console.log(playRound(playerSelection, computerSelection));
+  console.log(game());
+}))
