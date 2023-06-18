@@ -13,10 +13,10 @@ let computer_score = 0;
 let player_score = 0;
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    rounds.textContent = "Tie";
+    return "Tie";
   } else if (playerSelection === "ROCK" && computerSelection === "PAPER") {
     computer_score++;
-    return rounds.textContent = "You Lose! Paper beats Rock";
+    return "You Lose! Paper beats Rock";
     
   } else if (playerSelection === "SCISSORS" && computerSelection === "ROCK") {
     computer_score++;
@@ -36,9 +36,6 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 function game(){
-  // if(player_score === 5 || computer_score === 5){
-    
-  // }
   if(player_score === 5) {
     player_score = 0;
     computer_score = 0;
@@ -54,8 +51,9 @@ function game(){
 btns.forEach((btn) => btn.addEventListener('click', () => {
   const playerSelection = btn.textContent.toUpperCase();
   const computerSelection = getComputerChoice();
+  console.log(computerSelection)
+  console.log(playerSelection)
   rounds.textContent = playRound(playerSelection, computerSelection);
   scores.textContent = `Computer's score ${computer_score}  :  Playes's score ${player_score}`
   result.textContent = game();
-  
 }));
