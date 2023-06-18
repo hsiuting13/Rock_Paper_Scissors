@@ -4,53 +4,63 @@ function getComputerChoice() {
   let random_number = Math.floor(Math.random() * choices.length);
   return choices[random_number].toUpperCase();
 }
-let player_score = 0;
-let computer_score = 0;
+const btns = document.querySelectorAll('button');
+const result = document.querySelector('.result');
+const rounds = document.querySelector('.rounds');
+const scores = document.querySelector('.scores');
 
+let computer_score = 0;
+let player_score = 0;
 function playRound(playerSelection, computerSelection) {
+ 
   if (playerSelection === computerSelection) {
-    return "Tie";
+    rounds.textContent = "Tie";
   } else if (playerSelection === "ROCK" && computerSelection === "PAPER") {
+    rounds.textContent = "You Lose! Paper beats Rock";
     computer_score++;
-    return "You Lose! Paper beats Rock";
   } else if (playerSelection === "SCISSORS" && computerSelection === "ROCK") {
+   
+    rounds.textContent = "You lose! Rock beats Scissors";
     computer_score++;
-    return "You lose! Rock beats Scissors";
   } else if (playerSelection === "PAPER" && computerSelection === "SCISSORS") {
+   
+    rounds.textContent = "You lose! Scissors beats Paper";
     computer_score++;
-    return "You lose! Scissors beats Paper";
   } else if (playerSelection === "ROCK" && computerSelection === "SCISSORS") {
+   
+    rounds.textContent = "You win! Rock beats Scissors";
     player_score++;
-    return "You win! Rock beats Scissors";
   } else if (playerSelection === "PAPER" && computerSelection === "ROCK") {
+    
+    rounds.textContent = "You win! Paper beats Rock";
     player_score++;
-    return "You win! Paper beats Rock";
   } else if (playerSelection === "SCISSORS" && computerSelection === "PAPER") {
+    
+    rounds.textContent = "You win! Scissors beats Paper";
     player_score++;
-    return "You win! Scissors beats Paper";
-  } else {
-    return "Plz! Provide the correct information";
   }
 }
 function game(){
   if(player_score === 5) {
-    console.log(
-      `You win the game! Player's score ${player_score}, Computer's score ${computer_score}`
-    );
+    result.textContent = `You win the game! `
   } else if(computer_score === 5){
-    console.log(
-      `You lose the game! Player's score ${player_score}, Computer's score ${computer_score}`
-    );
-  } 
+    result.textContent = `You lose the game! `
+  }
+  if(player_score === 5 || computer_score === 5){
+    player_score = 0;
+    computer_score = 0;
+  }
 }
 
 
-const btns = document.querySelectorAll('button')
+
 btns.forEach((btn) => btn.addEventListener('click', () => {
   const playerSelection = btn.textContent.toUpperCase();
   const computerSelection = getComputerChoice();
-  console.log(playerSelection)
-  console.log(computerSelection)
-  console.log(playRound(playerSelection, computerSelection));
-  console.log(game());
-}))
+  
+  playRound(playerSelection, computerSelection);
+  scores.textContent = `Computer's score ${computer_score}  :  Playes's score ${player_score}`
+  // console.log(playerSelection)
+  // console.log(computerSelection)
+  game();
+}));
